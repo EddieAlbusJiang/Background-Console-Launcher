@@ -15,7 +15,7 @@ int main(){
 	si.wShowWindow = SW_HIDE;
 	PROCESS_INFORMATION pii;
 	memset(&pii, 0,sizeof(PROCESS_INFORMATION));
-    CreateProcess(LPCSTR("C:\\alist-windows-4.0-amd64.exe"),NULL, NULL, NULL, false, 0, NULL, LPCSTR("C:\\"), &si, &pii);
+    CreateProcess(TEXT("C:\\alist-windows-4.0-amd64.exe"),NULL, NULL, NULL, false, 0, NULL, TEXT("C:\\"), &si, &pii);
     
     return 0;
 }
