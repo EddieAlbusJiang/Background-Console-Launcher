@@ -1,2 +1,4 @@
 
 *.exe
+bcl.log
+bcl.cfg
