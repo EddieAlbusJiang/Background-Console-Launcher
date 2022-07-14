@@ -46,7 +46,6 @@ int formating(){
 }
 
 int main(){
-    // ShowWindow(GetConsoleWindow(), SW_HIDE); 
     // LPWSTR("C:\\alist-windows-4.0-amd64.exe");F:\Eddie\D\Github\Background-Console-Launcher\bullseye.exe
     // init
     FILE *file=fopen("bcl.cfg","r");
@@ -58,31 +57,12 @@ int main(){
         cout<<"The BCF is not configured. Entering configuration pannel..."<<endl;
         config();
     }
+    ShowWindow(GetConsoleWindow(), SW_HIDE); 
     fgets(target,100,file);
     fgets(directory,100,file);
 
-    //logging
-    for(int i=0;i<=100;i++){
-        cout<<int(target[i])<<" ";
-    }
-    cout<<endl;
-    for(int i=0;i<=100;i++){
-        cout<<int(directory[i])<<" ";
-    }
-    cout<<endl;
-
     formating();
     cout<<"At console "<<stdout<<", Launching file "<<file<<" "<<target<<" "<<directory<<" ..."<<endl;
-
-    //logging
-    for(int i=0;i<=100;i++){
-        cout<<int(target[i])<<" ";
-    }
-    cout<<endl;
-    for(int i=0;i<=100;i++){
-        cout<<int(directory[i])<<" ";
-    }
-    cout<<endl<<endl;
 
     // CreateProcess
     STARTUPINFO si;
