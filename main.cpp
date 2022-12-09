@@ -11,23 +11,26 @@ int config(){
     cout<<"Please give out the prefix directory: ";
     gets(directory);
     cout<<"Please confirm the following :"<<endl;
-    cout<<"BCF will launch the program "<<target<<" in "<<directory<<endl;
+    cout<<"BCL will launch the program "<<target<<" in "<<directory<<endl;
     cout<<"Do you want to continue?[Y/n] ";
     if(getchar()=='Y'){
-        cout<<"Writing configurations to BCF.cfg"<<endl;
+        cout<<"Writing configurations to BCL.cfg"<<endl;
         FILE* file=fopen("bcl.cfg","w");
         fputs(target,file);
         fputs("\n",file);
         fputs(directory,file);
         fputs("\n",file);
         fputs("-----Background-Console-Launcher-----",file);
+        fputs("[Info] Created new configuration file.\n",logg);
         fputs("\n",file);
         fclose(file);
         return 0;
     }
     cout<<"Abort."<<endl;
     Sleep(1501);
-    fputs("BCL exited with code 2.\n\n",logg);
+    fputs("[op] The user gave up the configurations.\n\n",logg);
+    fputs("[Critical] BCL was aborted.\n\n",logg);
+    fputs("[Info] BCL exited with code 2.\n\n",logg);
     exit(2);
 }
 
@@ -50,12 +53,13 @@ int main(){
     // LPWSTR("C:\\alist-windows-4.0-amd64.exe");F:\Eddie\D\Github\Background-Console-Launcher\bullseye.exe
     // init
     FILE *file=fopen("bcl.cfg","r");
-    fputs("BCL Launched.\n",logg);
+    freopen("%%USERPROFILE%\\.bcl\\stderr.log","a+",stderr);
+    fputs("[Info] BCL Launched.\n",logg);
     cout<<"Welcome to Background Console Launcher!"<<endl;
     if(!file){
-        fputs("Enter configuration panel.\n",logg);
+        fputs("[Info] Entered configuration panel.\n",logg);
         fclose(file);
-        cout<<"The BCF is not configured. Entering configuration pannel..."<<endl;
+        cout<<"The BCL is not configured. Entering configuration pannel..."<<endl;
         config();
     }
     fgets(target,100,file);
@@ -73,7 +77,7 @@ int main(){
 
     formating();
     cout<<"At console "<<stdout<<", Launching file "<<file<<" "<<target<<" "<<directory<<" ..."<<endl;
-
+    
     //logging
     for(int i=0;i<=100;i++){
         cout<<int(target[i])<<" ";
@@ -93,7 +97,8 @@ int main(){
 	PROCESS_INFORMATION pii;
 	memset(&pii, 0,sizeof(PROCESS_INFORMATION));
     CreateProcess(TEXT(target),NULL, NULL, NULL, false, 0, NULL, TEXT(directory), &si, &pii);
-    fputs("BCL exited with code 0.\n\n",logg);
+    fputs("[Info] BCL created the specified process.\n",logg);
+    fputs("[Info] BCL exited with code 0.\n\n",logg);
     return 0;
 }
 
